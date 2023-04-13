@@ -1,0 +1,12 @@
+<h1>新規投稿</h1>
+<!-- form_with部分 -->
+<%= form_with model: @post_sake, url: '/post_sakes', method: :post do |f| %>
+  <h4>日本酒名</h4>
+  <%= f.text_field :sake %>
+
+  <h4>レビュー</h4>
+  <%= f.text_area :comment %>
+
+
+  <%= f.submit '投稿' %>
+<% end %>
