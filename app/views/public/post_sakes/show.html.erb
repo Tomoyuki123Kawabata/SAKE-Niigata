@@ -1,2 +1,13 @@
-<h1>Public::PostSakes#show</h1>
-<p>Find me in app/views/public/post_sakes/show.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<h2>日本酒名</h2>
+<p><%= @post_sake.sake %></p>
+
+<h2>画像</h2>
+<%= image_tag @post_sake.image, size: "200x200" %>
+<h2>レビュー</h2>
+<p><%= @post_sake.comment %></p>
+
+<%= link_to "編集", edit_post_sake_path(@post_sake.id) %>
+<%= link_to "削除", post_sake_path(@post_sake.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

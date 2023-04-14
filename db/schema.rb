@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 2023_04_13_130121) do
 
   create_table "post_sakes", force: :cascade do |t|
     t.string "sake", null: false
-    t.text "explanation", null: false
-    t.string "star", null: false
+    t.text "explanation"
+    t.string "star"
     t.text "comment", null: false
-    t.integer "user_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "user_id"
+    t.integer "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
