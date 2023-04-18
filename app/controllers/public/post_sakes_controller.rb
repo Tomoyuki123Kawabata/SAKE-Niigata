@@ -33,6 +33,7 @@ class Public::PostSakesController < ApplicationController
 
   def show
     @post_sake = PostSake.find(params[:id])  
+    @post_comment = PostComment.new
   end
   
   def destroy

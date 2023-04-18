@@ -1,11 +1,16 @@
-<h1>投稿一覧</h1>
-
-<% @post_sakes.each do |post_sake| %>
-  <p>画像</p>
-  <%= image_tag post_sake.image, size: "200x200" %>
-  <p>日本酒名</p>
-  <span> <%= link_to post_sake.sake, post_sake_path(post_sake.id) %></span>
-  <p>レビュー</p>
-  <%= post_sake.comment %>
-  
-<% end %>
+<div class="container">
+  <div class="row">
+    <% @post_sakes.each do |post_sake| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= image_tag post_sake.image, class: "card-img-top", alt: "Sake Image" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post_sake.sake, post_sake_path(post_sake.id) %></h5>
+            <p class="card-text"><%= post_sake.comment %></p>
+            <a href="<%= post_sake_path(post_sake.id) %>" class="btn btn-primary"><%= "#{post_sake.post_comments.count} コメント" %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

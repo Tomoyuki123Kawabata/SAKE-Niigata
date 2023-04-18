@@ -17,7 +17,9 @@ namespace :admin do
   end
   
 scope module: :public do
-    resources :post_sakes
+    resources :post_sakes, only: [:new, :create, :index, :show, :destroy, :edit] do
+    resources :post_comments, only: [:create, :destroy]
+  end
     resources :users
   end
   get 'homes/top'
