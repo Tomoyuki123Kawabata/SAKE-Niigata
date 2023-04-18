@@ -1,11 +1,10 @@
-<h1>投稿一覧</h1>
-
+<h1>レビュー一覧</h1>
 <% @post_sakes.each do |post_sake| %>
   <p>画像</p>
   <%= image_tag post_sake.image, size: "200x200" %>
   <p>日本酒名</p>
   <span> <%= link_to post_sake.sake, post_sake_path(post_sake.id) %></span>
   <p>レビュー</p>
-  <%= post_sake.comment %>
+  <span><%= post_sake.comment %></span>
   
 <% end %>

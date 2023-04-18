@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  # 顧客用
-# URL /customers/sign_in ...
+# URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -12,6 +12,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+namespace :admin do
+    get 'homes/top'
+  end
+  
 scope module: :public do
     resources :post_sakes
     resources :users
