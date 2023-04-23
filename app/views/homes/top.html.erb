@@ -1,2 +1,44 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container px-4 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <div class="m-4">
+        <h4>ようこそ、SAKE-Niigataへ!</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <h2 class="my-4"><strong>レビュー</strong></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <% @post_sakes.each do |post_sake| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <%= image_tag post_sake.image, class: "card-img-top", alt: "Sake Image" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to post_sake.sake, post_sake_path(post_sake.id) %></h5>
+            <p class="card-text"><%= post_sake.comment %></p>
+            <a href="<%= post_sake_path(post_sake.id) %>" class="btn btn-primary"><%= "#{post_sake.post_comments.count} コメント" %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+      </div>
+    </div>
+  </div>
+  <div class ="row">
+    <div class ="col-md-9"></div>
+    <div class ="col-md-3">
+      <%= link_to "レビューを投稿する>>", new_post_sake_path %>
+    </div>
+  </div>
+</div>

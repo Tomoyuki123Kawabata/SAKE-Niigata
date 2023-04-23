@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <%= flash[:notice] %>
+    <%= flash[:notice] %>
+    <div class="col-md-5 mb-4">
+      <%= image_tag @post_sake.image, class: "img-fluid mb-4 ", alt: "Sake Image" %>
+    </div>
+    <div class="col-md-7">
       <h2 class="mb-4">日本酒名</h2>
       <p><%= @post_sake.sake %></p>
-
-      <h2 class="mb-4">画像</h2>
-      <%= image_tag @post_sake.image, class: "img-fluid mb-4", alt: "Sake Image" %>
 
       <h2 class="mb-4">レビュー</h2>
       <p><%= @post_sake.comment %></p>

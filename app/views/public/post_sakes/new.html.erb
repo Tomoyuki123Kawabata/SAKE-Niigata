@@ -1,23 +1,30 @@
 <h1>新規投稿</h1>
 <% if @post_sake.errors.any? %>
-  <%= @post_sake.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post_sake.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+  <div class="alert alert-danger" role="alert">
+    <%= @post_sake.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post_sake.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
-<!-- form_with部分 -->
-<%= form_with model: @post_sake, method: :post do |f| %>
-  <h4>日本酒名</h4>
-  <%= f.text_field :sake %>
 
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+<%= form_with model: @post_sake, method: :post, html: { class: "form" }, multipart: true do |f| %>
+  <div class="form-group">
+    <label for="post_sake_sake">日本酒名</label>
+    <%= f.text_field :sake, class: "form-control", id: "post_sake_sake" %>
+  </div>
 
-  <h4>レビュー</h4>
-  <%= f.text_area :comment %>
+  <div class="form-group">
+    <label for="post_sake_image">画像</label>
+    <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "post_sake_image" %>
+  </div>
 
+  <div class="form-group">
+    <label for="post_sake_comment">レビュー</label>
+    <%= f.text_area :comment, class: "form-control", id: "post_sake_comment" %>
+  </div>
 
-  <%= f.submit '投稿' %>
+  <%= f.submit '投稿', class: "btn btn-primary" %>
 <% end %>

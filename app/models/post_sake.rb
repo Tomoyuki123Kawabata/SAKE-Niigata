@@ -6,4 +6,6 @@ class PostSake < ApplicationRecord
   validates :sake, presence: true
   validates :comment, presence: true
   validates :image, presence: true
+  
+  
 end

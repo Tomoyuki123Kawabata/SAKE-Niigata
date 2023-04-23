@@ -1,13 +1,19 @@
-<h1>編集画面</h1>
-
-<%= form_with model: @post_sake do |f| %>
-
-  <h4>タイトル</h4>
-  <%= f.text_field :sake %>
-  
-  <h4>レビュー</h4>
-  <%= f.text_area :comment %>
-  
-  <%= f.submit '保存' %>
-  
-<% end %>
+<div class="container">
+  <%= form_with model: @post_sake, class: "mt-4" do |f| %>
+    <div class="form-group">
+      <label for="post_sake_sake">日本酒名</label>
+      <%= f.text_field :sake, class: "form-control", id: "post_sake_sake" %>
+    </div>
+    <div class="form-group mb-3">
+     <label for="post_sake_sake">画像</label>
+    <%= f.file_field :image, class: "form-control", accept: "image/*" %>
+ 　  </div>
+    
+    <div class="form-group">
+      <label for="post_sake_comment">レビュー</label>
+      <%= f.text_area :comment, class: "form-control", id: "post_sake_comment" %>
+    </div>
+    
+    <%= f.submit '保存', class: "btn btn-primary" %>
+  <% end %>
+</div>
