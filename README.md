@@ -1,4 +1,4 @@
-# niigata-sake-beginner
+# SAKE-Niigata
 
 
 
