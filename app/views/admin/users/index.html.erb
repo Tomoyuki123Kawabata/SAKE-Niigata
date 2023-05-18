@@ -1,0 +1,27 @@
+<div class ="container my-4">
+  <div class ="row my-4">
+    <div class ="col-md-5">
+      <h2>ユーザー一覧</h2>
+    </div>
+  </div>
+  <div class ="row my-4">
+    <div class ="col-md-12">
+      <table class ="table">
+        <tr>
+          <td>会員ID</td>
+          <td>名前</td>
+          <td>メールアドレス</td>
+          <td></td>
+        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <th><%= user.id %></th>
+            <th><%= user.name %></th>
+            <th><%= user.email %></th>
+            <td></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

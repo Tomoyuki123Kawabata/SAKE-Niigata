@@ -11,10 +11,10 @@
   </head>
 
   <body class="mb-5">
-    <% if user_signed_in? %>
-      <%= render 'layouts/header' %>
-    <% elsif admin_signed_in? %>
+    <% if admin_signed_in? %>
       <%= render 'layouts/header_admin' %>
+    <% elsif user_signed_in? %>
+      <%= render 'layouts/header' %>
     <% else %>
       <%= render 'layouts/header' %>
     <% end %>
