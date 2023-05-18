@@ -8,16 +8,18 @@
       <h2 class="mb-4">日本酒名</h2>
       <p><%= @post_sake.sake %></p>
 
-      <h2 class="mb-4">レビュー</h2>
+      <h3 class="mb-4">レビュー</h3>
       <p><%= @post_sake.comment %></p>
 
       <div class="mt-5 mb-4">
-        <%= link_to "編集", edit_post_sake_path(@post_sake.id), class: "btn btn-primary mr-2" %>
-        <%= link_to "削除", post_sake_path(@post_sake.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      <% if @post_sake.user == current_user %>
+    　 <%= link_to "編集", edit_post_sake_path(@post_sake.id), class: "btn btn-primary mr-2" %>
+       <%= link_to "削除", post_sake_path(@post_sake.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+      <% end %>
       </div>
 
       <div class="mt-5 mb-4">
-        <h2 class="mb-4">コメント</h2>
+        <h3 class="mb-4">コメント</h3>
         <p>コメント件数：<%= @post_sake.post_comments.count %></p>
         <% @post_sake.post_comments.each do |post_comment| %>
           <div class="media mb-4">

@@ -1,5 +1,5 @@
 class Public::PostSakesController < ApplicationController
-
+before_action :is_matching_login_user, only: [:edit, :update,:dest]
   def new
     @post_sake = PostSake.new
   end
@@ -46,5 +46,12 @@ class Public::PostSakesController < ApplicationController
   # ストロングパラメータ
   def post_sake_params
     params.require(:post_sake).permit(:sake, :comment, :image)
+  end
+  
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end
