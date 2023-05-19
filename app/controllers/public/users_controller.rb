@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update,:show]
+  before_action :is_matching_login_user, only: [:edit, :update,:show,:index]
   
   def index
     
@@ -17,6 +17,18 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
     redirect_to user_path(current_user.id)
+  end
+  
+  def unsubscribe
+  end
+  
+  def withdrawal
+    @user = User.find(params[:id])
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
   end
   
   private

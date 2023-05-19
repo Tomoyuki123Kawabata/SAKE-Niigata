@@ -15,4 +15,9 @@ class User < ApplicationRecord
    end
    profile_image.variant(resize_to_limit: [width, height]).processed
   end
+  
+   # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
 end
