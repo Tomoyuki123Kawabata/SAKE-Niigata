@@ -20,6 +20,33 @@
     <label for="post_sake_image">画像</label>
     <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "post_sake_image" %>
   </div>
+  
+  <% if @post_sake.id.nil? %>
+    <div class="form-group" id="star">
+      <%= f.label :star %>
+      <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+      <div id="post_raty"></div>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#post_raty');
+        if (elem == null) return;
+  
+        elem.innerHTML = ""
+        let opt = {  
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post_sake[star]',
+        };
+        raty(elem, opt);
+      });
+    </script>
+  <% else %>
+    <div class="form-group">
+      <%= render 'static_rate', post_sake: @post_sake %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <label for="post_sake_comment">レビュー</label>

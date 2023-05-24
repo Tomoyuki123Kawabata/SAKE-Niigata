@@ -1,5 +1,5 @@
 class Public::PostSakesController < ApplicationController
-before_action :is_matching_login_user, only: [:edit, :update,:dest]
+
   def new
     @post_sake = PostSake.new
   end
@@ -13,8 +13,8 @@ before_action :is_matching_login_user, only: [:edit, :update,:dest]
     else
       render :new
     end
-    
-    
+
+
   end
 
   def index
@@ -24,7 +24,7 @@ before_action :is_matching_login_user, only: [:edit, :update,:dest]
   def edit
     @post_sake = PostSake.find(params[:id])
   end
-  
+
   def update
     post_sake = PostSake.find(params[:id])
     post_sake.update(post_sake_params)
@@ -32,26 +32,21 @@ before_action :is_matching_login_user, only: [:edit, :update,:dest]
   end
 
   def show
-    @post_sake = PostSake.find(params[:id])  
+    @post_sake = PostSake.find(params[:id])
     @post_comment = PostComment.new
   end
-  
+
   def destroy
     post_sake = PostSake.find(params[:id])  # データ（レコード）を1件取得
     post_sake.destroy  # データ（レコード）を削除
-    redirect_to post_sakes_path  # 投稿一覧画面へリダイレクト  
+    redirect_to post_sakes_path  # 投稿一覧画面へリダイレクト
   end
 
   private
   # ストロングパラメータ
   def post_sake_params
-    params.require(:post_sake).permit(:sake, :comment, :image)
+    params.require(:post_sake).permit(:sake, :comment, :image, :star)
   end
+
   
-  def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-      redirect_to root_path
-    end
-  end
 end

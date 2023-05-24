@@ -6,6 +6,7 @@
           <%= image_tag post_sake.image, class: "card-img-top", alt: "Sake Image" %>
           <div class="card-body">
             <h5 class="card-title"><%= link_to post_sake.sake, post_sake_path(post_sake.id) %></h5>
+            <%= render 'static_rate', post_sake: post_sake %>
             <p class="card-text"><%= post_sake.comment %></p>
             <a href="<%= post_sake_path(post_sake.id) %>" class="btn btn-primary"><%= "#{post_sake.post_comments.count} コメント" %></a>
           </div>
