@@ -25,6 +25,8 @@ scope module: :public do
     resources :post_comments, only: [:create, :destroy]
   end
     resources :users
+    post 'users/guest_sign_in', to: 'users#guest_sign_in'
+    
     # 退会確認画面
   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   # 論理削除用のルーティング
