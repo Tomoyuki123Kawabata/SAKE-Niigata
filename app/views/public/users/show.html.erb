@@ -1,6 +1,10 @@
 <div class="container">
  <div class="row">
-  <div class="col-md-3"></div>
+  <div class="col-md-3">
+    <% if user_signed_in? %>
+  　　　<p><%= link_to "レビューを投稿する>>", new_post_sake_path, class: "btn btn-success btn-sm sign_in"%></p>
+　　　<% end %>
+  </div>
   <div class="col-md-9">
     <h3><%= @user.name %></h3>
     <%= image_tag @user.get_profile_image(100,100), class: "img-fluid rounded-circle" %>
@@ -32,11 +36,4 @@
    </div>
   </div>
  </div>
-  
-  <div class ="row">
-    <div class="col-md-3"></div>
-    <div class ="col-md-9">
-      <%= link_to "レビューを投稿する>>", new_post_sake_path %>
-    </div>
-  </div>
 </div>
