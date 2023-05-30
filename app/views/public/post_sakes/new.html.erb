@@ -1,57 +1,62 @@
-<h1>新規投稿</h1>
-<% if @post_sake.errors.any? %>
-  <div class="alert alert-danger" role="alert">
-    <%= @post_sake.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post_sake.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_with model: @post_sake, method: :post, html: { class: "form" }, multipart: true do |f| %>
-  <div class="form-group">
-    <label for="post_sake_sake">日本酒名</label>
-    <%= f.text_field :sake, class: "form-control", id: "post_sake_sake" %>
-  </div>
-
-  <div class="form-group">
-    <label for="post_sake_image">画像</label>
-    <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "post_sake_image" %>
-  </div>
-  
-  <% if @post_sake.id.nil? %>
-    <div class="form-group" id="star">
-      <%= f.label :star %>
-      <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-      <div id="post_raty"></div>
+<div class="container">
+ <div class="row">
+  <div class="col-md-2"></div>
+　<h1 class="col-md-8 d-flex justify-content-center">新規投稿</h1>
+　 <% if @post_sake.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <%= @post_sake.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post_sake.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-    <script>
-      $(document).on('turbolinks:load', function() {
-        let elem = document.querySelector('#post_raty');
-        if (elem == null) return;
-  
-        elem.innerHTML = ""
-        let opt = {  
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          scoreName: 'post_sake[star]',
-        };
-        raty(elem, opt);
-      });
-    </script>
-  <% else %>
+   <% end %>
+   <div class="col-md-2"></div>
+  </div>
+   <div class="col-md-2"></div>
+  <%= form_with model: @post_sake, method: :post, html: { class: "form", multipart: true } do |f| %>
+   <div class="col-md-8 mx-auto">
     <div class="form-group">
-      <%= render 'static_rate', post_sake: @post_sake %>
+      <%= f.label :sake, "日本酒名" %>
+      <%= f.text_field :sake, class: "form-control", id: "post_sake_sake" %>
     </div>
+    <div class="form-group">
+      <%= f.label :image, "画像" %>
+      <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "post_sake_image" %>
+    </div>
+    <% if @post_sake.id.nil? %>
+      <div class="form-group" id="star">
+        <%= f.label :star %>
+        <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+        <div id="post_raty"></div>
+      </div>
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if (elem == null) return;
+    
+          elem.innerHTML = "";
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'post_sake[star]',
+          };
+          raty(elem, opt);
+        });
+      </script>
+    <% else %>
+      <div class="form-group">
+        <%= render 'static_rate', post_sake: @post_sake %>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :comment, "レビュー" %>
+      <%= f.text_area :comment, class: "form-control", id: "post_sake_comment" %>
+    </div>
+    <%= f.submit '投稿', class: "btn btn-primary" %>
   <% end %>
-
-  <div class="form-group">
-    <label for="post_sake_comment">レビュー</label>
-    <%= f.text_area :comment, class: "form-control", id: "post_sake_comment" %>
   </div>
-
-  <%= f.submit '投稿', class: "btn btn-primary" %>
-<% end %>
+  <div class="col-md-2"></div>
+</div>

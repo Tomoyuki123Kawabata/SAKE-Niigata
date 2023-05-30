@@ -38,12 +38,14 @@
       </div>
 
       <div class="mt-5 mb-4">
-        <%= form_with model: [@post_sake, @post_comment] do |f| %>
-          <div class="form-group">
-            <%= f.label :comment, class: "mb-2" %>
-            <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
-          </div>
-          <%= f.submit "送信する", class: "btn btn-primary" %>
+        <% if @post_sake.user == current_user %>
+          <%= form_with model: [@post_sake, @post_comment] do |f| %>
+            <div class="form-group">
+              <%= f.label :comment, class: "mb-2" %>
+              <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+            </div>
+            <%= f.submit "送信する", class: "btn btn-primary" %>
+          <% end %>
         <% end %>
       </div>
     </div>
