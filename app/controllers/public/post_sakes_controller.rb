@@ -1,5 +1,4 @@
 class Public::PostSakesController < ApplicationController
-
   def new
     @post_sake = PostSake.new
   end
@@ -13,12 +12,10 @@ class Public::PostSakesController < ApplicationController
     else
       render :new
     end
-
-
   end
 
   def index
-   @post_sakes = PostSake.all
+    @post_sakes = PostSake.all
   end
 
   def edit
@@ -43,10 +40,8 @@ class Public::PostSakesController < ApplicationController
   end
 
   private
-  # ストロングパラメータ
-  def post_sake_params
-    params.require(:post_sake).permit(:sake, :comment, :image, :star)
-  end
-
-  
+    # ストロングパラメータ
+    def post_sake_params
+      params.require(:post_sake).permit(:sake, :comment, :image, :star)
+    end
 end
