@@ -38,7 +38,6 @@
       </div>
 
       <div class="mt-5 mb-4">
-        <% if @post_sake.user == current_user %>
           <%= form_with model: [@post_sake, @post_comment] do |f| %>
             <div class="form-group">
               <%= f.label :comment, class: "mb-2" %>
@@ -46,7 +45,6 @@
             </div>
             <%= f.submit "送信する", class: "btn btn-primary" %>
           <% end %>
-        <% end %>
       </div>
     </div>
   </div>

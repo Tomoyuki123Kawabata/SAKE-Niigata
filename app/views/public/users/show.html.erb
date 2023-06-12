@@ -22,21 +22,7 @@
   <div class="col-md-9">
     <h3>レビュー投稿一覧</h3>
     <div class="row">
-    <% @post_sakes.each do |post_sake| %>
-      <div class="card col-md-4 mb-3" >
-        <div class="card-body">
-          <%= link_to post_sake_path(post_sake.id) do %>
-            <%= image_tag post_sake.image, class: "card-img-top img-fluid"  %>
-          <% end %>
-          <div class="card-text">
-            <p>投稿ユーザー画像：<%= image_tag post_sake.user.get_profile_image(50,50), class: "rounded-circle mr-2" %><%= post_sake.user.name %></p>
-            <p>日本酒名：<%= post_sake.sake %></p>
-             <%= render 'public/post_sakes/static_rate', post_sake: post_sake %>
-            <p>レビュー：<%= post_sake.comment %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
+     <%= render 'public/post_sakes/index', post_sakes: @post_sakes %>
    </div>
   </div>
  </div>
