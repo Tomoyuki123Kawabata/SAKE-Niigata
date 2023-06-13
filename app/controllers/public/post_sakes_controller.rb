@@ -15,7 +15,7 @@ class Public::PostSakesController < ApplicationController
   end
 
   def index
-    @post_sakes = PostSake.all
+    @post_sakes = PostSake.page(params[:page]) #kaminariでのページネーション
   end
 
   def edit

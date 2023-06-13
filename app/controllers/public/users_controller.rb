@@ -6,7 +6,7 @@ class Public::UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @post_sakes = @user.post_sakes # ユーザーの投稿をすべて取得
+    @post_sakes = @user.PostSake.page(params[:page]) #kaminariでのページネーション/ユーザーの投稿をすべて取得
   end
 
   def edit
